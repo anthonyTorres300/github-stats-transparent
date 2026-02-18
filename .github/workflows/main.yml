@@ -2,6 +2,9 @@
 
 name: Generate Stats Images
 
+permissions:
+  contents: write
+
 # Controls when the action will run. Triggers the workflow on push events
 on:
   push:
@@ -22,6 +25,9 @@ jobs:
     steps:
     # Checks-out repository under $GITHUB_WORKSPACE, so the job can access it
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.ACCESS_TOKEN }}
 
     # Run using Python 3.8 for consistency and aiohttp
     - name: Set up Python 3.12
